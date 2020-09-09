@@ -71,3 +71,32 @@ class ProductoService ():
                         posicion = posicion - 1
                     lista_ordenada[posicion + 1] = valorNuevo
         return lista_ordenada
+
+
+    def busqueda_binaria(self, lista_ordenada, precio_buscado):
+        lista_ordenada = self.insertion_sort_precio(
+            lista_ordenada, "descendente"
+            )
+        medio = int(len(lista_ordenada)/2)
+
+        while lista_ordenada[medio]["_precio"] != precio_buscado:
+            if lista_ordenada[medio]["_precio"] < precio_buscado:
+                medio = int(medio/2)
+            if lista_ordenada[medio]["_precio"] > precio_buscado:
+                medio += int(medio/2)
+            if lista_ordenada[medio]["_precio"] == precio_buscado:
+                return lista_ordenada[medio]
+
+        lista_ordenada = self.insertion_sort_precio(
+            lista_ordenada, "ascendente"
+            )
+        medio = int(len(lista_ordenada)/2)
+
+        while lista_ordenada[medio]["_precio"] != precio_buscado:
+            if lista_ordenada[medio]["_precio"] > precio_buscado:
+                medio = int(medio/2)
+            if lista_ordenada[medio]["_precio"] < precio_buscado:
+                medio += int(medio/2)
+            if lista_ordenada[medio]["_precio"] == precio_buscado:
+                return lista_ordenada[medio]
+

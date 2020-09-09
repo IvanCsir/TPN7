@@ -66,6 +66,19 @@ class TestProducto(unittest.TestCase):
     def test_insertion_sort_precio(self, tipo_orden, list_ordenada):
         lista_ordenada = ProductoService().insertion_sort_precio(Repository.productosList, tipo_orden)
         self.assertDictEqual(lista_ordenada, list_ordenada)
+    
+    @parameterized.expand([
+        (200000, {'_descripcion':
+         'samsung s10', '_precio': 200000, '_tipo': 'celular'}),
+        (400000, {'_descripcion':
+         'samsung s20', '_precio': 400000, '_tipo': 'celular'}),
+    ])
+
+    # Busqueda binaria
+    def test_busqueda_binaria(self, precio_buscado, producto):
+        busqueda = ProductoService().\
+            busqueda_binaria(Repository.productosList, precio_buscado)
+        self.assertDictEqual(busqueda, producto)
 
 
 
